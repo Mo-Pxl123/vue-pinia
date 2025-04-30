@@ -19,7 +19,7 @@
             <RouterLink class="nav-link border border-primary rounded mx-2" to="/bs">Bootstrap</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link border border-primary rounded mx-2" to="/counter">Counter <span class="badge bg-primary text-secondary">*</span></RouterLink>
+            <RouterLink class="nav-link border border-primary rounded mx-2" to="/counter">Counter <span class="badge bg-primary text-secondary">{{counterStore.counterView}}</span></RouterLink>
           </li>
         </ul>
       </div>
@@ -27,8 +27,17 @@
   </nav>
 </template>
 <script>
+import {mapStores} from "pinia";
+import {useCounterStore} from "@/stores/counter.js";
+import counterView from "../views/CounterView.vue";
+
 export default {
-    
+  computed:{
+    counterView() {
+      return counterView
+    },
+    ...mapStores(useCounterStore)
+  },
 }
 </script>
 <style lang="">
